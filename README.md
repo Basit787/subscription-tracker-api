@@ -1,3 +1,15 @@
+# Prerequisites
+
+Before running the application, ensure you have the following installed:
+
+- Node.js (v22 or later)
+- pnpm
+- MongoDB
+- Redis
+- Docker & Docker Compose (optional)
+
+---
+
 # Installation
 
 Clone the repository and install the dependencies.
@@ -15,7 +27,7 @@ pnpm install
 
 This project includes two example environment files.
 
-## Local Development
+### 1. Local Development
 
 Copy the local environment file:
 
@@ -28,11 +40,11 @@ This configuration expects:
 - MongoDB running on `localhost:27017`
 - Redis running on `localhost:6379`
 
-> **Note:** Make sure both MongoDB and Redis are running before starting the application.
+> **Note:** Ensure both MongoDB and Redis are running before starting the application.
 
 ---
 
-## Docker
+### 2. Docker
 
 Copy the Docker environment file:
 
@@ -45,8 +57,7 @@ This configuration uses the Docker service names:
 - MongoDB → `mongodb`
 - Redis → `redis`
 
-No additional changes are required.
-
+No additional configuration is required.
 ---
 
 # Running the Application
@@ -57,6 +68,12 @@ Start the development server:
 
 ```bash
 pnpm dev
+```
+
+The API will be available at:
+
+```text
+http://localhost:3000
 ```
 
 ---
@@ -73,6 +90,12 @@ Start the production server:
 
 ```bash
 pnpm start
+```
+
+The API will be available at:
+
+```text
+http://localhost:3000
 ```
 
 ---
@@ -95,4 +118,10 @@ View logs:
 
 ```bash
 docker compose logs -f
+```
+
+The API will be available at:
+
+```text
+http://localhost:3000
 ```
