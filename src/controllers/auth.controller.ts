@@ -24,7 +24,7 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
 	const accessToken = generateAccessToken(user.id);
 	const refreshToken = generateRefreshToken(user.id);
 
-	user.refreshToken = refreshToken;
+	user.refreshToken = await hashRefreshToken(refreshToken);
 	await user.save();
 
 	setAuthCookies(res, accessToken, refreshToken);
