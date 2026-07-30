@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
-import { User } from "../models/User.js";
 import { ApiError } from "../errors/api-error.js";
-import { verifyAccessToken } from "../utils/jwt.js";
+import { User } from "../models/User.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { verifyAccessToken } from "../utils/jwt.js";
 
 export const authMiddleware = asyncHandler(
 	async (req: Request, res: Response, next: NextFunction) => {

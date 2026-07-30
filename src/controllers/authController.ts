@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
+import { ApiError } from "../errors/api-error.js";
 import { User } from "../models/User.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwt.js";
 import { clearAuthCookies, setAuthCookies } from "../utils/cookies.js";
-import { ApiError } from "../errors/api-error.js";
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwt.js";
+import { compareRefreshToken, hashRefreshToken } from "../utils/password.js";
 
 export const register = asyncHandler(async (req: Request, res: Response) => {
 	const { name, email, password } = req.body;
@@ -56,7 +57,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 	const accessToken = generateAccessToken(user.id);
 	const refreshToken = generateRefreshToken(user.id);
 
-	user.refreshToken = refreshToken;
+	user.refreshToken = await hashRefreshToken(refreshToken);
 	await user.save();
 
 	setAuthCookies(res, accessToken, refreshToken);
@@ -82,18 +83,20 @@ export const refresh = asyncHandler(async (req: Request, res: Response) => {
 
 	const user = await User.findById(payload.sub).select("+refreshToken");
 
-	if (!user) {
+	if (!user?.refreshToken) {
 		throw new ApiError(401, "Invalid refresh token");
 	}
 
-	if (user.refreshToken !== token) {
+	const isRefreshTokenValid = await compareRefreshToken(token, user.refreshToken);
+
+	if (!isRefreshTokenValid) {
 		throw new ApiError(401, "Refresh token mismatch");
 	}
 
 	const accessToken = generateAccessToken(user.id);
 	const refreshToken = generateRefreshToken(user.id);
 
-	user.refreshToken = refreshToken;
+	user.refreshToken = await hashRefreshToken(refreshToken);
 	await user.save();
 
 	setAuthCookies(res, accessToken, refreshToken);
