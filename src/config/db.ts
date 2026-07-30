@@ -23,3 +23,18 @@ export const connectToDatabase = async () => {
 		logger.warn({ err: error }, "MongoDB unavailable, continuing without persistence");
 	}
 };
+
+export const disconnectFromDatabase = async () => {
+	if (!isConnected) {
+		return;
+	}
+
+	try {
+		await mongoose.connection.close();
+		isConnected = false;
+		logger.info("MongoDB disconnected");
+	} catch (error) {
+		logger.error({ err: error }, "Failed to disconnect MongoDB");
+		throw error;
+	}
+};

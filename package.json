@@ -12,7 +12,8 @@
 		"check": "biome check .",
 		"fix": "biome check --write .",
 		"docker:up": "docker compose up --build",
-		"docker:down": "docker compose down"
+		"docker:down": "docker compose down",
+		"seed": "tsx src/config/seed.ts"
 	},
 	"keywords": [],
 	"author": "",

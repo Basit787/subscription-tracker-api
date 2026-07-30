@@ -100,6 +100,60 @@ http://localhost:3000
 
 ---
 
+# Database Seeding
+
+Populate the database with sample users and subscriptions.
+
+Run:
+
+```bash
+pnpm seed
+```
+
+The seed script will:
+
+- Create sample users
+- Create sample subscriptions
+- Remove existing seed data before inserting fresh data
+
+---
+
+# API Documentation
+
+Interactive Swagger documentation is available after starting the application.
+
+Open:
+
+```text
+http://localhost:3000/api/docs
+```
+
+You can explore all available endpoints, request bodies, and responses directly from the browser.
+
+---
+
+# Running Tests
+
+Run tests in watch mode:
+
+```bash
+pnpm test
+```
+
+Run all tests once:
+
+```bash
+pnpm test:run
+```
+
+Generate a coverage report:
+
+```bash
+pnpm test:coverage
+```
+
+---
+
 # Running with Docker
 
 Start all services:
@@ -124,4 +178,10 @@ The API will be available at:
 
 ```text
 http://localhost:3000
+```
+
+Swagger documentation:
+
+```text
+http://localhost:3000/api/docs
 ```

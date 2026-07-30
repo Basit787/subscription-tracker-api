@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { asyncHandler } from "../utils/asyncHandler.js";
 import * as subscriptionService from "../services/subscription.service.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const createSubscription = asyncHandler(async (req: Request, res: Response) => {
 	const subscription = await subscriptionService.createSubscription(req.body);
