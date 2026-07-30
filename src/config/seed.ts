@@ -18,7 +18,7 @@ async function seed() {
 		await Subscription.deleteMany({});
 		await User.deleteMany({});
 
-		const hashedPassword = await bcrypt.hash("Password@123", 10);
+		const hashedPassword = await bcrypt.hash("password123", 10);
 
 		const users = await User.create([
 			{
