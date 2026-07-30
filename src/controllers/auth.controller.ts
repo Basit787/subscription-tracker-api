@@ -134,8 +134,6 @@ export const currentUser = asyncHandler(async (_req: Request, res: Response) => 
 			id: user.id,
 			name: user.name,
 			email: user.email,
-			createdAt: user.createdAt,
-			updatedAt: user.updatedAt,
 		},
 	});
 });
