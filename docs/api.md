@@ -10,6 +10,21 @@ http://localhost:3000
 
 ---
 
+### Open Swagger UI
+
+```
+http://localhost:3000/api/docs
+```
+
+Swagger allows you to:
+
+- View all available endpoints
+- Execute API requests directly from the browser
+- Inspect request/response schemas
+- Test authenticated endpoints
+
+---
+
 # Health Endpoint
 
 ## Health Check
