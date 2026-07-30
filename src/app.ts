@@ -1,16 +1,16 @@
+import cookieParser from "cookie-parser";
 import express from "express";
-import { connectToDatabase } from "./config/db.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import indexRoutes from "./routes/index.js";
 
-export const createApp = async () => {
-  const app = express();
-  app.use(express.json());
+const app = express();
 
-  await connectToDatabase();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-  app.use("/api", indexRoutes);
+app.use("/api", indexRoutes);
 
-  app.use(errorHandler);
-  return app;
-};
+app.use(errorHandler);
+
+export default app;

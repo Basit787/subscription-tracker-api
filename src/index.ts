@@ -1,20 +1,18 @@
-import { createApp } from "./app.js";
+import app from "./app.js";
+import { connectToDatabase } from "./config/db.js";
 import { env } from "./config/env.js";
-import { logger } from "./utils/logger.js";
- 
-const startServer = async () => {
-  const app = await createApp();
 
-  app.listen(env.PORT, () => {
-    logger.info(`Server running on http://localhost:${env.PORT}`);
-  });
-};
+async function bootstrap() {
+	try {
+		await connectToDatabase();
 
-if (env.NODE_ENV !== "test") {
-  startServer().catch((error) => {
-    logger.error({ err: error }, "Failed to start server");
-    process.exit(1);
-  });
+		app.listen(env.PORT, () => {
+			console.log(`Server running on port ${env.PORT}`);
+		});
+	} catch (error) {
+		console.error(error);
+		process.exit(1);
+	}
 }
 
-export { createApp };
+bootstrap();
