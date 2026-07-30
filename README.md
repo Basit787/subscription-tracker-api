@@ -125,3 +125,37 @@ The API will be available at:
 ```text
 http://localhost:3000
 ```
+
+---
+
+## Testing
+
+Run tests in watch mode:
+
+```bash
+pnpm test
+```
+
+Run all tests once:
+
+```bash
+pnpm test:run
+```
+
+Generate a test coverage report:
+
+```bash
+pnpm test:coverage
+```
+
+### Test Coverage
+
+The project includes integration tests for:
+
+- Authentication APIs
+- Subscription CRUD APIs
+- Request validation
+- Authentication middleware
+- Error scenarios
+
+Coverage reports are generated in the `coverage/` directory.
