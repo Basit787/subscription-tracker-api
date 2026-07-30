@@ -1,4 +1,4 @@
-import { Schema, model, type Types } from "mongoose";
+import { model, Schema, type Types } from "mongoose";
 
 export enum SubscriptionPlan {
 	BASIC = "basic",

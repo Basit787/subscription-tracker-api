@@ -1,11 +1,11 @@
 import { ApiError } from "../errors/api-error.js";
-import { User } from "../models/User.js";
 import {
 	type ISubscription,
 	PLAN_PRICES,
 	Subscription,
 	type SubscriptionStatus,
 } from "../models/Subscription.js";
+import { User } from "../models/User.js";
 import { validateObjectId } from "../utils/validateObjectId.js";
 
 export const createSubscription = async (data: ISubscription) => {

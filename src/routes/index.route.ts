@@ -1,14 +1,14 @@
 import { Router } from "express";
+import swaggerUi from "swagger-ui-express";
+import { authMiddleware } from "../middleware/authMiddleware.js";
+import { swaggerSpec } from "../swagger/config.js";
 import authRoutes from "./auth.routes.js";
 import subscriptionRoutes from "./subscription.routes.js";
-import { authMiddleware } from "../middleware/authMiddleware.js";
-import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "../swagger/config.js";
- 
+
 const router = Router();
 
 router.get("/health", (_req, res) => {
-  res.json({ status: "ok" });
+	res.json({ status: "ok" });
 });
 
 router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

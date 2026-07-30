@@ -15,7 +15,8 @@
     "docker:down": "docker compose down",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "seed": "tsx src/config/seed.ts"
   },
   "keywords": [],
   "author": "",
